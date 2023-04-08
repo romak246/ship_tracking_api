@@ -1,0 +1,6 @@
+/.env
+/.idea
+/storage
+/venv
+/static
+__pycache__/
