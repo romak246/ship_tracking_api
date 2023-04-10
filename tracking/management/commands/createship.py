@@ -1,14 +1,10 @@
 import random
 
 from django.core.management import BaseCommand
-
 from django_countries import countries
-from geopy.point import Point
-from geopy import distance, Nominatim
-from random import uniform
 
+from tracking.helpers.random_location_in_water import random_location_in_water
 from tracking.models.ship import ship_types, Ship
-
 
 
 class Command(BaseCommand):
@@ -17,12 +13,6 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('--c', type=int, default=1, help='Количество генераций')
         parser.add_argument('--e', type=int, default=0, help='Количество событий')
-
-    @staticmethod
-    def get_location_type(lat, lon):
-        geolocator = Nominatim(user_agent="location_tracker")
-        location = geolocator.reverse(f"{lat}, {lon}", exactly_one=True, addressdetails=True)
-        return location
 
     @staticmethod
     def get_random_country():
@@ -40,29 +30,10 @@ class Command(BaseCommand):
     def generate_ship_tonnage():
         return random.randint(1000, 100000)
 
-    def random_location_in_water(self):
-        """
-        Функция возвращает случайные координаты, находящиеся в море.
-        """
-        while True:
-            # генерируем случайные координаты широты и долготы
-            lat = uniform(-60, 90)
-            lon = uniform(-180, 180)
-            is_land = self.get_location_type(round(lat, 3), round(lon, 3))
-            # создаем объект Point с этими координатами
-            point = Point(lat, lon)
-            # вычисляем расстояние до ближайшей суши
-            dist = distance.distance(point, Point(0, 0)).kilometers
-            # если расстояние больше 200 км, то возвращаем координаты
-            match dist:
-                case dist if dist > 200 and not is_land:
-                    return lat, lon
-
     def handle(self, *args, **options):
         count = options['c']
-        events = options['e']
         for i in range(count):
-            cords = self.random_location_in_water()
+            cords = random_location_in_water()
             new_ship = Ship(
                 code=self.generate_imo_number(),
                 country=self.get_random_country(),

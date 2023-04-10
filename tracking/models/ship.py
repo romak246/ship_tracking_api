@@ -8,7 +8,7 @@ ship_types = (
     ('oil_tanker', 'Нефтяной танкер'),
     ('gas_carrier', 'Газовоз'),
     ('chemical_tanker', 'Химический танкер'),
-    ('reefer_ship', 'Рефрижераторный судно'),
+    ('reefer_ship', 'Рефрижераторное судно'),
     ('cruise_ship', 'Круизный лайнер'),
     ('ferry', 'Паром'),
     ('yacht', 'Яхта'),

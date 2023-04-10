@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from django.core.management import BaseCommand
 from random import choice
 
+from tracking.helpers.random_location_in_water import random_location_in_water
 from tracking.models.event import event_types, Event
 from tracking.models.ship import Ship
 
@@ -35,10 +36,12 @@ class Command(BaseCommand):
         count = options['c']
 
         for i in range(count):
+            cords = random_location_in_water()
             new_event = Event(
                 ship=Ship.objects.order_by('?').first(),
                 event_type=choice(event_types)[0],
-                date=self.random_date()
-
+                date=self.random_date(),
+                latitude=cords[0],
+                longitude=cords[1],
             )
             new_event.save()
