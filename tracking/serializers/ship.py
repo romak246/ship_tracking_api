@@ -27,4 +27,4 @@ class ShipSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ship
         fields = ['id', 'country', 'flag', 'code', 'codename', 'tonnage', 'type', 'latitude', 'longitude',
-                  'destination']
+                  'destination', 'image']
