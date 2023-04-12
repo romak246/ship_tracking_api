@@ -24,4 +24,3 @@ class Command(BaseCommand):
                 ship.save()
 
             self.stdout.write(self.style.SUCCESS('Все корабли передвинулись на 20 км.'))
-            time.sleep(5)

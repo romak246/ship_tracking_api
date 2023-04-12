@@ -1,17 +1,11 @@
-import random
-
-from datetime import timedelta, datetime
+from datetime import datetime
 from django.db import models
-from django.utils import timezone
 
 from tracking.models.ship import Ship
 
 event_types = (
-    ('авария', 'Авария'),
-    ('захват', 'Захват'),
-    ('пожар', 'Пожар'),
-    ('потеря', 'Потеря'),
-    ('поломка', 'Поломка')
+    ('accident', 'Авария'),
+    ('attack', 'Нападение'),
 )
 
 
