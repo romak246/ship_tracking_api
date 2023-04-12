@@ -1,3 +1,4 @@
+import math
 import random
 from django.core.management.base import BaseCommand
 from geopy import Point, distance
@@ -23,8 +24,9 @@ class Command(BaseCommand):
         ship.save()
 
     def handle(self, *args, **options):
+        workers = math.ceil(len(Ship.objects.all())/5)
         while True:
-            with concurrent.futures.ThreadPoolExecutor() as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
                 futures = []
                 for ship in Ship.objects.all():
                     futures.append(executor.submit(self.move_ship, ship))
