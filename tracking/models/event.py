@@ -17,4 +17,4 @@ class Event(models.Model):
     longitude = models.DecimalField('Долгота', max_digits=20, decimal_places=15, default=0)
 
     def __str__(self):
-        return f"{self.event_type} {self.ship.get_type_display()}, {self.ship.code}, {self.ship.country.name}"
+        return f"{self.get_event_type_display()} {self.ship.get_type_display()}, {self.ship.code}, {self.ship.country.name}"
