@@ -7,6 +7,7 @@ from tracking.serializers.ship import ShipSerializer
 class EventSerializer(serializers.ModelSerializer):
     ship = ShipSerializer()
     event_type = serializers.SerializerMethodField()
+    date = serializers.DateTimeField(format="%d-%m-%Y %H:%M:%S")
 
     @staticmethod
     def get_event_type(obj):

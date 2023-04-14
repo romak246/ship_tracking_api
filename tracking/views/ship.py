@@ -12,7 +12,7 @@ class ShipViewSet(mixins.RetrieveModelMixin,
     """
         Возвращает список судов
         ---
-        * **search** - поиск по коду судна
+        * **search** - поиск по позывному
         * **type** - фильтр по типу судна
     """
     model = Ship
@@ -21,4 +21,4 @@ class ShipViewSet(mixins.RetrieveModelMixin,
     lookup_field = 'code'
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     filterset_class = ShipFilter
-    search_fields = ['code']
+    search_fields = ['codename']

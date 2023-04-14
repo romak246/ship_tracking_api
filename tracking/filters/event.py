@@ -3,7 +3,7 @@ from tracking.models.event import Event
 
 
 class EventFilter(django_filters.FilterSet):
-    event_type = django_filters.CharFilter(field_name='event_type')
+    event_type = django_filters.BaseCSVFilter(field_name='event_type', lookup_expr='in')
 
     class Meta:
         model = Event
