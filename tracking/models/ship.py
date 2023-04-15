@@ -5,10 +5,11 @@ from tracking.models.port import Port
 
 ship_types = (
     ('container_ship', 'Контейнеровоз'),
-    ('oil_tanker', 'Нефтяной танкер'),
-    ('cruise_ship', 'Круизный лайнер'),
-    ('ferry', 'Паром'),
+    ('tanker', 'Танкер'),
+    ('fishing', 'Рыболовное'),
+    ('passenger', 'Пассажирское'),
     ('yacht', 'Яхта'),
+    ('tugboat', 'Буксир'),
 )
 
 
