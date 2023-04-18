@@ -21,7 +21,7 @@ class Command(BaseCommand):
                 bearing = random.uniform(0, 360)
                 new_location = distance.distance(kilometers=20).destination(current_location, bearing)
                 is_land = get_location_type(new_location.latitude, new_location.longitude)
-                if is_land is None:
+                if is_land:
                     ship.latitude = new_location.latitude
                     ship.longitude = new_location.longitude
                     ship.save()

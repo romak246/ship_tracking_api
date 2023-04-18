@@ -12,3 +12,5 @@ djangorestframework~=3.14.0
 django-cors-headers==3.14.0
 Pillow==9.5.0
 django-filter==23.1
+geopandas~=0.12.2
+shapely~=2.0.1

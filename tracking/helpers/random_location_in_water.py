@@ -1,6 +1,5 @@
-from django_countries import countries
 from geopy.point import Point
-from geopy import distance, Nominatim
+from geopy import distance
 from random import uniform
 
 from tracking.helpers.get_location_type import get_location_type
