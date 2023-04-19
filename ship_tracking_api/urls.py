@@ -5,6 +5,7 @@ from django.urls import path, include, re_path
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from tracking.views.port import PortViewSet
 from tracking.views.ship import ShipViewSet
 from tracking.views.event import EventViewSet
 
@@ -20,12 +21,12 @@ schema_view = get_schema_view(
 router = DefaultRouter()
 router.register(r'ships', ShipViewSet)
 router.register(r'events', EventViewSet)
+router.register(r'ports', PortViewSet)
+
 
 urlpatterns = [
     path('', include(router.urls)),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     re_path(r'^docs/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('admin/', admin.site.urls),
-    path('ships/', ShipViewSet.as_view(({'get': 'list'})), name='ships'),
-    path('events/', EventViewSet.as_view(({'get': 'list'})), name='events')
 ]
